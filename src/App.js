@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import logotipo from './assets/logotipo.svg';
+import './styles/App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src={logotipo} />
+        <div>
+          <h1>Isso presta?</h1>
+          <h2>Simulador de votação de filmes/séries</h2>
+        </div>
+        <button className="btn-add">Adicionar filmes/séries</button>        
       </header>
+      <main>
+        <div>CARD AQUI</div>
+        <div>
+          <p>VOTOS GERAIS:</p>
+          <div>
+            <p>Gostei</p>
+          </div>
+          <div>
+            <p>Não gostei</p>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

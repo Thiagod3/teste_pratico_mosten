@@ -1,0 +1,24 @@
+@import './global.css';
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 3rem 1rem 3rem;
+  color: var(--roxo-mosten);
+  border-bottom: 1px solid #DFD5F0;
+}
+
+.btn-add {
+  background-color: var(--laranja-mosten);
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
