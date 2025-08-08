@@ -1,15 +1,25 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { ThumbsUp, ThumbsDown } from "@phosphor-icons/react";
+import { getVotos, votar } from '../utils/votes'
 import posterPlaceholder from '../assets/posterPlaceholder.png'
 import '../styles/movieCard.css'
-import { ThumbsUp, ThumbsDown } from "@phosphor-icons/react";
 
 const Card = ({ movie }) => {
     const [imgSrc, setImgSrc] = useState(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder)
+    const [votes, setVotes] = useState({ gostei: 0, naoGostei: 0 })
+
+    useEffect(() => {
+      const votosSalvos = getVotos(movie.imdbID)
+      setVotes(votosSalvos)
+    }, [movie.imdbID])
+
+    function handleVote(tipo) {
+      const novosVotos = votar(movie.imdbID, tipo)
+      setVotes(novosVotos)
+    }
 
     return(
     <div className='movie'>
-
         <div>
             <img
                 src={imgSrc}
@@ -25,8 +35,14 @@ const Card = ({ movie }) => {
             </p>
         </div>
         <div className="votes-container">
-            <button className="btn-vote"><ThumbsUp size={32} color="#f7f7f7" /></button>
-            <button className="btn-vote"><ThumbsDown size={32} color="#f7f7f7" /></button>
+            <button className="btn-vote" onClick={() => handleVote('gostei')}>
+              <ThumbsUp size={32} color="#f7f7f7" />
+              <span className="number-votes">{votes.gostei}</span>
+            </button>
+            <button className="btn-vote" onClick={() => handleVote('naoGostei')}>
+              <ThumbsDown size={32} color="#f7f7f7" />
+              <span className="number-votes">{votes.naoGostei}</span>
+            </button>
         </div>
     </div>
 )

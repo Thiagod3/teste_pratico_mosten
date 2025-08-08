@@ -38,11 +38,11 @@ function App() {
           <p>VOTOS GERAIS:</p>
           <div className="votes">
             <div>
-             <ThumbsUp size={32} className="btn-vote"/>
+             <ThumbsUp size={32}/>
              <p>Gostei</p>
             </div>
             <div>
-              <ThumbsDown size={32} className="btn-vote"/>
+              <ThumbsDown size={32}/>
               <p>Não gostei</p>
             </div>            
           </div>
