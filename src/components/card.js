@@ -9,6 +9,10 @@ const Card = ({ movie }) => {
     const [votes, setVotes] = useState({ gostei: 0, naoGostei: 0 })
 
     useEffect(() => {
+        setImgSrc(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder);
+    }, [movie.Poster]);
+
+    useEffect(() => {
       const votosSalvos = getVotos(movie.imdbID)
       setVotes(votosSalvos)
     }, [movie.imdbID])
