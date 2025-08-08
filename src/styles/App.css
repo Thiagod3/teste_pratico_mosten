@@ -10,7 +10,7 @@
   justify-content: space-between;
   padding: 0.5rem 3rem 1rem 3rem;
   color: var(--roxo-mosten);
-  border-bottom: 1px solid #DFD5F0;
+  border-bottom: 3px solid #DFD5F0;
 }
 
 .btn-add {
@@ -20,5 +20,32 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.votesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.votes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn-vote {
   cursor: pointer;
 }
