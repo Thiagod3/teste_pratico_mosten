@@ -11,3 +11,16 @@ export function votar(imdbID, tipo) {
   localStorage.setItem('votos', JSON.stringify(votos));
   return votos[imdbID];
 }
+
+export function getVotosGerais() {
+  const votos = JSON.parse(localStorage.getItem('votos')) || {};
+  let totalGostei = 0;
+  let totalNaoGostei = 0;
+
+  Object.values(votos).forEach(({ gostei, naoGostei }) => {
+    totalGostei += gostei;
+    totalNaoGostei += naoGostei;
+  });
+
+  return { totalGostei, totalNaoGostei };
+}
