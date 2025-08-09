@@ -3,13 +3,23 @@ export function getVotos(imdbID) {
   return votos[imdbID] || { gostei: 0, naoGostei: 0 };
 }
 
-export function votar(imdbID, tipo) {
+export function votar(movie, tipo) {
   const votos = JSON.parse(localStorage.getItem('votos')) || {};
-  if (!votos[imdbID]) votos[imdbID] = { gostei: 0, naoGostei: 0 };
 
-  votos[imdbID][tipo] += 1;
+  if (!votos[movie.imdbID]) {
+    votos[movie.imdbID] = {
+      title: movie.Title || movie.title || "",
+      type: movie.Type || "",
+      description: movie.description || "", 
+      poster: movie.Poster || "", 
+      gostei: 0,
+      naoGostei: 0
+    };
+  }
+
+  votos[movie.imdbID][tipo] += 1;
   localStorage.setItem('votos', JSON.stringify(votos));
-  return votos[imdbID];
+  return votos[movie.imdbID];
 }
 
 export function getVotosGerais() {

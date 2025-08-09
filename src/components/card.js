@@ -18,7 +18,7 @@ const Card = ({ movie }) => {
     }, [movie.imdbID])
 
     function handleVote(tipo) {
-      const novosVotos = votar(movie.imdbID, tipo)
+      const novosVotos = votar(movie, tipo);
       setVotes(novosVotos)
     }
 
