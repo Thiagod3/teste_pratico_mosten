@@ -5,17 +5,18 @@ import posterPlaceholder from '../assets/posterPlaceholder.png'
 import '../styles/movieCard.css'
 
 const Card = ({ movie }) => {
-    const [imgSrc, setImgSrc] = useState(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder)
-    const [votes, setVotes] = useState({ gostei: 0, naoGostei: 0 })
+  const [imgSrc, setImgSrc] = useState(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder)
+  const [votes, setVotes] = useState({ gostei: 0, naoGostei: 0 })
 
-    useEffect(() => {
-        setImgSrc(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder);
-    }, [movie.Poster]);
+  useEffect(() => {
+      setImgSrc(movie.Poster !== 'N/A' ? movie.Poster : posterPlaceholder);
+  }, [movie.Poster]);
 
-    useEffect(() => {
-      const votosSalvos = getVotos(movie.imdbID)
-      setVotes(votosSalvos)
-    }, [movie.imdbID])
+  useEffect(() => {
+    const votosSalvos = getVotos(movie);
+    setVotes(votosSalvos);
+  }, [movie]);
+
 
     function handleVote(tipo) {
       const novosVotos = votar(movie, tipo);
@@ -24,7 +25,7 @@ const Card = ({ movie }) => {
 
     return(
     <div className='movie'>
-        <div>
+        <div className="poster-container">
             <img
                 src={imgSrc}
                 alt={movie.Title}
@@ -35,7 +36,7 @@ const Card = ({ movie }) => {
         <div>
             <h3>{movie.Title}</h3>
             <p>
-                {movie.Type === "movie" ? "Filme" : movie.Type === "series" ? "Série" : movie.Type} | {movie.Year}
+                {movie.Type === "movie" ? "Filme" : movie.Type === "series" ? "Série" : movie.Type}
             </p>
         </div>
         <div className="votes-container">

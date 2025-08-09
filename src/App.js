@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import logotipo from './assets/logotipo.svg';
 import './styles/App.css';
 import Card from './components/card'
+import ModalRegister from './components/modalRegister';
 import { ThumbsUp, ThumbsDown, MagnifyingGlass } from "@phosphor-icons/react";
 import { getVotosGerais } from './utils/votes';
 
@@ -11,21 +12,29 @@ const API_URL = 'https://www.omdbapi.com?apikey=978babb6'
 function App() {
 
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [votosGerais, setVotosGerais] = useState({ totalGostei: 0, totalNaoGostei: 0 });
   const [texto, setTexto] = useState('');
   const [showSearch, setShowSearch] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
 
   const searchMovies = async (title) => {
-      const response = await fetch(`${API_URL}&s=${title}`);
-      const data = await response.json();
+    const votos = JSON.parse(localStorage.getItem('votos')) || {};
+    const filmesLocais = Object.values(votos).filter(filme =>
+      filme.Title.toLowerCase().includes(title.toLowerCase()) &&
+      filme.id
+    );
 
-      setMovies(data.Search);
+
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
+
+    setMovies([...filmesLocais, ...data.Search]);
   }
+
   useEffect(() => {
+    searchMovies('Avengers');
     setVotosGerais(getVotosGerais());
-      searchMovies('Avengers');
   }, []);
 
   function handleChange(event) {
@@ -36,6 +45,17 @@ function App() {
     setShowSearch(prev => !prev);
   }
 
+  function handleSaveMovie(novoFilme) {
+    const votos = JSON.parse(localStorage.getItem('votos')) || {};
+    votos[novoFilme.id] = {
+    ...novoFilme,
+    gostei: 0,
+    naoGostei: 0
+    };
+    localStorage.setItem('votos', JSON.stringify(votos));
+
+    setMovies(prev => [novoFilme, ...prev]);
+  }
 
   return (
     <div className="App">
@@ -49,7 +69,7 @@ function App() {
         </div>
 
         <div className="header-btn">
-        <button className="btn-add">Adicionar filmes/séries</button>
+        <button className="btn-add" onClick={() => setShowModal(true)}>Adicionar filmes/séries</button>
         <button className="btn-search" onClick={toggleSearch}>
           <MagnifyingGlass size={28} weight="bold" color="#612CB5" />
         </button>
@@ -100,6 +120,13 @@ function App() {
                   </div>
               )
         }
+
+        {showModal && (
+          <ModalRegister
+            onClose={() => setShowModal(false)}
+            onSave={handleSaveMovie}
+          />
+        )}
       </main>
     </div>
   );

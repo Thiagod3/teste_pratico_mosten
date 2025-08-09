@@ -1,25 +1,28 @@
-export function getVotos(imdbID) {
+export function getVotos(filme) {
   const votos = JSON.parse(localStorage.getItem('votos')) || {};
-  return votos[imdbID] || { gostei: 0, naoGostei: 0 };
+  const id = filme.imdbID || filme.id;
+  return votos[id] || { gostei: 0, naoGostei: 0 };
 }
 
 export function votar(movie, tipo) {
   const votos = JSON.parse(localStorage.getItem('votos')) || {};
-
-  if (!votos[movie.imdbID]) {
-    votos[movie.imdbID] = {
-      title: movie.Title || movie.title || "",
-      type: movie.Type || "",
-      description: movie.description || "", 
-      poster: movie.Poster || "", 
+  
+  const id = movie.imdbID || movie.id;
+  
+  if (!votos[id]) {
+    votos[id] = {
+      Title: movie.Title,
+      Type: movie.Type || "",
+      Description: movie.Description || "",
+      Poster: movie.Poster || "https://via.placeholder.com/150",
       gostei: 0,
       naoGostei: 0
     };
   }
 
-  votos[movie.imdbID][tipo] += 1;
+  votos[id][tipo] += 1;
   localStorage.setItem('votos', JSON.stringify(votos));
-  return votos[movie.imdbID];
+  return votos[id];
 }
 
 export function getVotosGerais() {
