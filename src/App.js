@@ -45,6 +45,11 @@ function App() {
     setShowSearch(prev => !prev);
   }
 
+  function refreshVotosGerais() {
+    setVotosGerais(getVotosGerais());
+  }
+
+
   function handleSaveMovie(novoFilme) {
     const votos = JSON.parse(localStorage.getItem('votos')) || {};
     votos[novoFilme.id] = {
@@ -111,7 +116,12 @@ function App() {
           movies?.length > 0
               ?(
                   <div className='cardContainer'>
-                      {movies.map((movie) => (<Card movie={movie}/>))}
+                      {movies.map((movie) => (
+                        <Card 
+                          key={movie.imdbID || movie.id} 
+                          movie={movie} 
+                          onVotoAtualizado={refreshVotosGerais} 
+                        />))}
                   </div>
               ) :
               (
