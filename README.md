@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Sistema de Votação de Filmes e Séries
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é um sistema simples e funcional que permite aos usuários votarem em uma lista de filmes ou séries, registrando votos positivos (like) e negativos (dislike). O sistema também possibilita o cadastro de novos títulos, armazena os dados localmente e exibe totais de votos tanto por item quanto no geral.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Tecnologias
 
-### `npm start`
+- React
+- LocalStorage (para persistência dos dados)
+- API OMDb (para popular a lista inicial de filmes e séries)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Como rodar o projeto
 
-### `npm test`
+1. Clone este repositório:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/Thiagod3/teste_pratico_mosten
+   ```
 
-### `npm run build`
+2. Entre na pasta do projeto:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   cd teste_pratico_mosten
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Instale as dependências:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+4. Inicie a aplicação:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A aplicação abrirá no navegador automaticamente, geralmente em `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Sobre o aplicativo
 
-## Learn More
+- Ao iniciar, o site exibe uma lista inicial de filmes e séries, populada pela API OMDb.
+- Você pode cadastrar novos filmes ou séries para incluir na lista.
+- É possível pesquisar por qualquer título na lista para facilitar a votação.
+- Cada filme/série possui dois botões para votar: **Like** (positivo) e **Dislike** (negativo).
+- O sistema mantém um contador individual de likes e dislikes para cada título.
+- Também há um contador geral, que soma todos os votos positivos e negativos registrados no site.
+- Os dados dos filmes/séries que receberam votos são armazenados no `localStorage` para persistência e otimização de espaço (apenas os títulos votados são salvos).
+- Três filtros adicionais estão disponíveis para facilitar a visualização:
+  1. Mostrar todos os filmes/séries que receberam algum voto (positivo ou negativo).
+  2. Mostrar apenas os filmes/séries que receberam likes (sem dislikes).
+  3. Mostrar apenas os filmes/séries que receberam dislikes (sem likes).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contato
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Se tiver dúvidas ou quiser sugerir melhorias, fique à vontade para abrir uma issue ou me contatar.
