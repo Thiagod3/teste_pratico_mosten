@@ -114,18 +114,19 @@ function App() {
 
       <main className="main-body">        
         {showSearch && (
-          <div className="search-bar">
+          <form className="search-bar" onSubmit={(e) => { e.preventDefault(); searchMovies(texto);}}>
             <input
               type="text"
               value={texto}
               onChange={handleChange}
               placeholder="Digite algo"
               className="search-input"
+              required
             />
-            <button className="btn-search" onClick={() => searchMovies(texto)}>
+            <button className="btn-search" type="submit">
               <MagnifyingGlass size={24} weight="bold" color="#612CB5" />
             </button>
-          </div>
+          </form>
         )}
         
         <div className="votesContainer">
