@@ -38,10 +38,17 @@ const Card = ({ movie, onVotoAtualizado }) => {
           />
       </div>
       <div>
-          <h3>{movie.Title}</h3>
+          <h2>{movie.Title}</h2>
+          <div>
+            <p>Desc:</p>
+            <h3>
+              {movie.Description ? '"' + movie.Description + '"' : 'Indisponível'}
+            </h3>
+          </div>
           <p>
               {movie.Type === "movie" ? "Filme" : movie.Type === "series" ? "Série" : movie.Type}
           </p>
+          
       </div>
       <div className="votes-container">
           <button className="btn-vote" onClick={() => handleVote('gostei')}>

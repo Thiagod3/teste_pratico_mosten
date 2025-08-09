@@ -62,6 +62,36 @@ function App() {
     setMovies(prev => [novoFilme, ...prev]);
   }
 
+    function searchAllVoted () {
+    const votos = JSON.parse(localStorage.getItem('votos')) || {};
+    const allVotedMovies = Object.values(votos).filter(filme =>
+      filme.naoGostei ||
+      filme.gostei
+    );
+
+    setMovies([...allVotedMovies]);
+  }
+
+  function searchOnlyLike () {
+    const votos = JSON.parse(localStorage.getItem('votos')) || {};
+    const likedMovies = Object.values(votos).filter(filme =>
+      !filme.naoGostei &&
+      filme.gostei
+    );
+
+    setMovies([...likedMovies]);
+  }
+
+  function searchOnlyDislike () {
+    const votos = JSON.parse(localStorage.getItem('votos')) || {};
+    const dislikedMovies = Object.values(votos).filter(filme =>
+      filme.naoGostei &&
+      !filme.gostei
+    );
+
+    setMovies([...dislikedMovies]);
+  }
+
   return (
     <div className="App">
 
@@ -112,6 +142,11 @@ function App() {
           </div>
         </div>
 
+        <div className="filter-btns">
+          <button onClick={searchAllVoted}>Mostrar todas as mídias com voto</button>
+          <button onClick={searchOnlyLike}>Mostrar apenas mídias com voto positivo</button>
+          <button onClick={searchOnlyDislike}>Mostrar apenas mídias com voto negativo</button>
+        </div>
         {
           movies?.length > 0
               ?(

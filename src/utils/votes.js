@@ -11,6 +11,7 @@ export function votar(movie, tipo) {
   
   if (!votos[id]) {
     votos[id] = {
+      imdbID: movie.imdbID,
       Title: movie.Title,
       Type: movie.Type || "",
       Description: movie.Description || "",
